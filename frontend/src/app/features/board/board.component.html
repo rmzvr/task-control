@@ -1,0 +1,32 @@
+<app-header></app-header>
+<div class="container">
+  <div class="board">
+    <toolbar [title]="(board$ | async)?.name"></toolbar>
+    <ul class="lists">
+      <ng-container *ngIf="(status$ | async) === 'loading'">
+        <skeleton-rect></skeleton-rect>
+        <skeleton-rect></skeleton-rect>
+        <skeleton-rect></skeleton-rect>
+        <skeleton-rect></skeleton-rect>
+      </ng-container>
+
+      <ng-container *ngIf="(status$ | async) === 'success'">
+        <list
+          *ngFor="let list of lists$ | async"
+          [list]="list"
+          [boardID]="boardID"
+        >
+        </list>
+      </ng-container>
+    </ul>
+  </div>
+</div>
+
+<div
+  class="task-overlay"
+  data-overlay="true"
+  *ngIf="isTaskModalOpen$ | async"
+  (click)="closeMenuOnOverlay($event)"
+>
+  <task-modal></task-modal>
+</div>
