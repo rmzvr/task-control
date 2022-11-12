@@ -27,7 +27,6 @@ export class BoardComponent implements OnInit {
   public isTaskModalOpen$: Observable<boolean>;
 
   public lists$: Observable<List[]>;
-  public status$: Observable<any>;
 
   constructor(private store: Store, private route: ActivatedRoute) {
     this.boardID = this.route.snapshot.paramMap.get('id') as string;
@@ -37,8 +36,6 @@ export class BoardComponent implements OnInit {
     this.lists$ = this.store.select(selectListItems);
 
     this.isTaskModalOpen$ = this.store.select(selectModalTaskOpen);
-
-    this.status$ = this.store.select(selectStatus);
   }
 
   ngOnInit(): void {

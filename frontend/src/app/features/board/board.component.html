@@ -3,21 +3,12 @@
   <div class="board">
     <toolbar [title]="(board$ | async)?.name"></toolbar>
     <ul class="lists">
-      <ng-container *ngIf="(status$ | async) === 'loading'">
-        <skeleton-rect></skeleton-rect>
-        <skeleton-rect></skeleton-rect>
-        <skeleton-rect></skeleton-rect>
-        <skeleton-rect></skeleton-rect>
-      </ng-container>
-
-      <ng-container *ngIf="(status$ | async) === 'success'">
-        <list
-          *ngFor="let list of lists$ | async"
-          [list]="list"
-          [boardID]="boardID"
-        >
-        </list>
-      </ng-container>
+      <list
+        *ngFor="let list of lists$ | async"
+        [list]="list"
+        [boardID]="boardID"
+      >
+      </list>
     </ul>
   </div>
 </div>
